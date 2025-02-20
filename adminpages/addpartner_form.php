@@ -10,16 +10,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un Partenaire</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="custom.css" rel="stylesheet">
+    <link href="addpartner_form.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container mt-5">
+    <div class="container mt-4">
         <div class="card">
-            <div class="custom-header text-center">
+            <div class="custom-header text-center py-3">
                 <h3>Ajouter un Partenaire</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body py-4">
                 <form method="post" action="">
                     <!-- Nom -->
                     <div class="input-group">
@@ -46,11 +46,11 @@
                     <!-- Adresse -->
                     <div class="input-group">
                         <label class="input-group__label" for="adresse">Adresse</label>
-                        <textarea id="adresse" name="Adresse" class="input-group__input" rows="3"></textarea>
+                        <textarea id="adresse" name="Adresse" class="input-group__input" rows="2"></textarea>
                     </div>
 
                     <!-- Bouton de soumission -->
-                    <div class="text-center mt-4">
+                    <div class="text-center mt-3">
                         <button type="submit" name="add_partner" class="btn btn-gradient">Ajouter</button>
                     </div>
                 </form>

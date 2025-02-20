@@ -10,55 +10,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un Partenaire</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="custom_test.scss" type="text/x-scss">
+    <script src="https://cdn.jsdelivr.net/npm/sass.js/dist/sass.sync.min.js"></script>
 </head>
 
 <body>
-    <div class="container mt-5">
-        <div class="card">
-            <div class="custom-header text-center">
-                <h3>Ajouter un Partenaire</h3>
-            </div>
-            <div class="card-body">
-                <form method="post" action="">
-                    <!-- Nom -->
-                    <div class="input-group">
-                        <label class="input-group__label" for="nom">Nom <span class="text-danger">*</span></label>
-                        <input type="text" id="nom" name="Nom" class="input-group__input" required>
-                        <div class="invalid-feedback">Le nom est obligatoire.</div>
-                    </div>
 
-                    <!-- Email -->
-                    <div class="input-group">
-                        <label class="input-group__label" for="email">Email <span class="text-danger">*</span></label>
-                        <input type="email" id="email" name="Email" class="input-group__input" required>
-                        <div class="invalid-feedback">Un email valide est obligatoire.</div>
-                    </div>
-
-                    <!-- Téléphone -->
-                    <div class="input-group">
-                        <label class="input-group__label" for="telephone">Téléphone <span
-                                class="text-danger">*</span></label>
-                        <input type="tel" id="telephone" name="Telephone" class="input-group__input" required>
-                        <div class="invalid-feedback">Le téléphone est obligatoire.</div>
-                    </div>
-
-                    <!-- Adresse -->
-                    <div class="input-group">
-                        <label class="input-group__label" for="adresse">Adresse</label>
-                        <textarea id="adresse" name="Adresse" class="input-group__input" rows="3"></textarea>
-                    </div>
-
-                    <!-- Bouton de soumission -->
-                    <div class="text-center mt-4">
-                        <button type="submit" name="add_partner" class="btn btn-gradient">Ajouter</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <div class="button-container-2">
+        <span class="mas">MASK2</span>
+        <button type="button" name="Hover">MASK2</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Compile SCSS
+        fetch('custom_test.scss')
+            .then(response => response.text())
+            .then(scss => {
+                Sass.compile(scss, function (result) {
+                    const style = document.createElement('style');
+                    style.textContent = result.text;
+                    document.head.appendChild(style);
+                });
+            });
+    </script>
 </body>
 
 </html>

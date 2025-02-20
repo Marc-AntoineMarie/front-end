@@ -97,6 +97,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 650px !important;
   }
   
   .card {
@@ -108,7 +109,7 @@
   }
   
   .card-body {
-    padding: 3rem;
+    padding: 1.5rem !important;
     margin: auto;
   }
 
@@ -118,11 +119,11 @@
 
   .input-group {
     width: 100%;
-    max-width: 24em;
+    max-width: 22em;
     display: flex;
     flex-direction: column;
     z-index: 2;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.2rem;
     margin-left: auto;
     margin-right: auto;
   }
@@ -142,9 +143,9 @@
 
   .input-group__label {
     padding: 0 0.8em;
-    margin-bottom: 0.4em;
+    margin-bottom: 0.3em;
     text-transform: uppercase;
-    font-size: 0.8em;
+    font-size: 0.75em;
     letter-spacing: 0.1em;
     color: #333;
     cursor: pointer;
@@ -157,13 +158,13 @@
   .input-group input[type="tel"],
   .input-group textarea {
     color: #333;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     line-height: 1;
     border-style: none;
     outline: none;
-    height: calc(1em + 1.4em + 0.4em);
+    height: calc(1.8em + 0.2em + 1.4em);
     width: 100%;
-    padding: 0.7em 1.1em;
+    padding: 0.5em 1em;
     border: 0.2em solid transparent;
     background-image: linear-gradient(#fff, #fff), 
       linear-gradient(270deg, 
@@ -217,4 +218,23 @@
     font-size: 0.75em;
     margin-top: 0.4em;
     margin-left: 1.2em;
+  }
+
+  /* Style du bouton avec animation hover */
+  .btn-gradient {
+    transition: all 0.3s ease;
+    transform-origin: center;
+    padding: 0.6em 1.5em;  
+    border-radius: 6px;
+    font-size: 0.7em;
+    cursor: pointer;
+  }
+
+  .btn-gradient:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-gradient:active {
+    transform: scale(0.98);
   }
