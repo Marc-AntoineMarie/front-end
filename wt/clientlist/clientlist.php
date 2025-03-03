@@ -1,84 +1,84 @@
 <?php
-// /**
-//  * Liste des clients d'un partenaire
-//  * 
-//  * Cette page affiche :
-//  * - La liste des clients associés à un partenaire
-//  * - Les liens vers les détails de chaque client
-//  * - Les options de gestion des clients selon le rôle
-//  * 
-//  * Fonctionnalités principales :
-//  * - Filtrage des clients par partenaire
-//  * - Gestion des droits d'accès (Admin/Partenaire)
-//  * - Maintien du contexte de navigation
-//  * - Mise à jour des IDs en session
-//  */
+/**
+ * Liste des clients d'un partenaire
+ * 
+ * Cette page affiche :
+ * - La liste des clients associés à un partenaire
+ * - Les liens vers les détails de chaque client
+ * - Les options de gestion des clients selon le rôle
+ * 
+ * Fonctionnalités principales :
+ * - Filtrage des clients par partenaire
+ * - Gestion des droits d'accès (Admin/Partenaire)
+ * - Maintien du contexte de navigation
+ * - Mise à jour des IDs en session
+ */
 
-// require_once '../database/db.php';
+require_once '../database/db.php';
 
-// include '../database/partner_request.php';
-// include '../database/clients_request.php';
-// ///////////////////// Gestion des droits d'accès ///////////////////
-// session_start();
+include '../database/partner_request.php';
+include '../database/clients_request.php';
+///////////////////// Gestion des droits d'accès ///////////////////
+session_start();
 
-// // Vérification de l'authentification
-// // Cette vérification assure que :
-// // - L'utilisateur est connecté
-// // - Il a le rôle approprié (Admin ou Partenaire)
-// if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'Admin' && $_SESSION['role'] !== 'Partenaire')) {
-//     header('Location: ../login/login.php');
-//     exit;
-// }
+// Vérification de l'authentification
+// Cette vérification assure que :
+// - L'utilisateur est connecté
+// - Il a le rôle approprié (Admin ou Partenaire)
+if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'Admin' && $_SESSION['role'] !== 'Partenaire')) {
+    header('Location: ../login/login.php');
+    exit;
+}
 
-// // Récupération de l'ID partenaire
-// // Cette étape est cruciale pour :
-// // - Filtrer les clients du bon partenaire
-// // - Mettre à jour le contexte de navigation
-// // - Maintenir la cohérence de l'interface
-// $partnerId = null;
-// if (isset($_GET['idpartenaires'])) {
-//     $partnerId = intval($_GET['idpartenaires']);
-//     $_SESSION['partner_id'] = $partnerId;
-//     error_log("[clientlist.php] Updated partner_id in session from GET: " . $partnerId);
-// } elseif (isset($_SESSION['partner_id'])) {
-//     $partnerId = $_SESSION['partner_id'];
-//     error_log("[clientlist.php] Using partner_id from session: " . $partnerId);
-// } else {
-//     error_log("[clientlist.php] No partner_id found");
-// }
+// Récupération de l'ID partenaire
+// Cette étape est cruciale pour :
+// - Filtrer les clients du bon partenaire
+// - Mettre à jour le contexte de navigation
+// - Maintenir la cohérence de l'interface
+$partnerId = null;
+if (isset($_GET['idpartenaires'])) {
+    $partnerId = intval($_GET['idpartenaires']);
+    $_SESSION['partner_id'] = $partnerId;
+    error_log("[clientlist.php] Updated partner_id in session from GET: " . $partnerId);
+} elseif (isset($_SESSION['partner_id'])) {
+    $partnerId = $_SESSION['partner_id'];
+    error_log("[clientlist.php] Using partner_id from session: " . $partnerId);
+} else {
+    error_log("[clientlist.php] No partner_id found");
+}
 
-// // Vérification des droits d'accès
-// // Pour les partenaires :
-// // - Vérification que l'ID correspond au partenaire connecté
-// // - Protection contre l'accès non autorisé
-// if ($_SESSION['role'] === 'Partenaire' && $_SESSION['partner_id'] !== $partnerId) {
-//     header('Location: ../login/login.php');
-//     exit;
-// }
+// Vérification des droits d'accès
+// Pour les partenaires :
+// - Vérification que l'ID correspond au partenaire connecté
+// - Protection contre l'accès non autorisé
+if ($_SESSION['role'] === 'Partenaire' && $_SESSION['partner_id'] !== $partnerId) {
+    header('Location: ../login/login.php');
+    exit;
+}
 
-// ///////////////////// FIN vérif des rôles ///////////////////
+///////////////////// FIN vérif des rôles ///////////////////
 
-// //Temporaire pour le développement :
-// if (isset($_GET['idpartenaires'])) $idpartenaire = $_GET['idpartenaires'];
-// else $idpartenaire = 2;
+//Temporaire pour le développement :
+if (isset($_GET['idpartenaires'])) $idpartenaire = $_GET['idpartenaires'];
+else $idpartenaire = 2;
 
-// if (isset($_POST['idpartenaire'])) $idpartenaire = $_POST['idpartenaire'];
+if (isset($_POST['idpartenaire'])) $idpartenaire = $_POST['idpartenaire'];
 
-// $clientsHandler = new ClientsHandler($pdo);
+$clientsHandler = new ClientsHandler($pdo);
 
-// // Gestion de la suppression via AJAX
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete') {
-//     $clientId = intval($_POST['id']);
-//     $result = $clientsHandler->deleteClient($clientId);
+// Gestion de la suppression via AJAX
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete') {
+    $clientId = intval($_POST['id']);
+    $result = $clientsHandler->deleteClient($clientId);
 
-//     header('Content-Type: application/json');
-//     if ($result === true) {
-//         echo json_encode(['success' => true]);
-//     } else {
-//         echo json_encode(['success' => false, 'error' => 'Erreur lors de la suppression.']);
-//     }
-//     exit;
-// }
+    header('Content-Type: application/json');
+    if ($result === true) {
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'error' => 'Erreur lors de la suppression.']);
+    }
+    exit;
+}
 
 ?>
 <!DOCTYPE html>
