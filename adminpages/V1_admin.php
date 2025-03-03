@@ -1,7 +1,7 @@
 <?php
 /**
  * Page d'administration principale
- * 
+ * caca
  * Cette page est le point d'entrée pour les administrateurs et permet :
  * - La gestion des partenaires (liste, ajout, modification)
  * - L'accès aux clients de chaque partenaire
