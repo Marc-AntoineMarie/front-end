@@ -46,10 +46,6 @@
     text-align: center;
     line-height: 55px;
 
-  .btn:hover {
-    scale: 2;
-  }
-
     @include button(#8D0000, 
     "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png",
     3000%,
